@@ -3,175 +3,167 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('plugins');
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeSection, setActiveSection] = useState<'resources' | 'builds'>('resources');
 
-  const trendingPlugins = [
+  const resources = [
     {
       id: 1,
-      name: 'React Auth Pro',
-      description: 'Complete authentication solution with JWT, OAuth2, and MFA support',
-      version: '2.4.1',
-      downloads: '45.2K',
-      rating: 4.8,
-      stars: 1243,
-      category: 'Auth',
-      gradient: 'from-blue-500 to-cyan-500'
+      name: 'Ultra Presets Pack',
+      description: 'Professional color grading presets for photos and videos',
+      type: 'Preset',
+      version: '3.2.1',
+      downloads: '127K',
+      price: 'Free',
+      image: '🎨',
+      gradient: 'from-violet-500 to-purple-600'
     },
     {
       id: 2,
-      name: 'API Gateway Lite',
-      description: 'Lightweight API gateway with rate limiting and caching',
-      version: '1.9.0',
-      downloads: '32.1K',
-      rating: 4.6,
-      stars: 892,
-      category: 'Backend',
-      gradient: 'from-purple-500 to-pink-500'
+      name: 'LightLeak Overlays Vol.1',
+      description: 'High-quality light leak overlays for creative editing',
+      type: 'Overlay',
+      version: '2.0.0',
+      downloads: '89K',
+      price: 'Free',
+      image: '✨',
+      gradient: 'from-amber-500 to-orange-600'
     },
     {
       id: 3,
-      name: 'Chart Master',
-      description: 'Beautiful, responsive charts and data visualization library',
-      version: '3.2.5',
-      downloads: '58.7K',
-      rating: 4.9,
-      stars: 2156,
-      category: 'UI',
-      gradient: 'from-orange-500 to-red-500'
+      name: 'Cinematic LUTs Collection',
+      description: 'Film-grade color lookup tables for video production',
+      type: 'LUT',
+      version: '1.5.4',
+      downloads: '156K',
+      price: 'Free',
+      image: '🎬',
+      gradient: 'from-blue-500 to-cyan-600'
     },
     {
       id: 4,
-      name: 'File Upload Plus',
-      description: 'Advanced file upload with drag-drop, previews, and cloud storage',
-      version: '1.5.3',
-      downloads: '28.4K',
-      rating: 4.7,
-      stars: 654,
-      category: 'Utils',
-      gradient: 'from-green-500 to-emerald-500'
+      name: 'Advanced Retouching Plugin',
+      description: 'Professional skin retouching and beauty tools',
+      type: 'Plugin',
+      version: '4.1.0',
+      downloads: '73K',
+      price: 'Free',
+      image: '💎',
+      gradient: 'from-pink-500 to-rose-600'
     },
     {
       id: 5,
-      name: 'Database ORM Pro',
-      description: 'TypeScript-first ORM with migrations and schema validation',
-      version: '4.1.0',
-      downloads: '67.3K',
-      rating: 4.9,
-      stars: 3421,
-      category: 'Database',
-      gradient: 'from-indigo-500 to-blue-500'
+      name: 'Texture & Grain Pack',
+      description: 'Film grain and texture overlays for authentic analog look',
+      type: 'Texture',
+      version: '2.3.2',
+      downloads: '94K',
+      price: 'Free',
+      image: '📸',
+      gradient: 'from-emerald-500 to-teal-600'
     },
     {
       id: 6,
-      name: 'Email Templates',
-      description: 'Production-ready email templates with inline CSS',
-      version: '2.0.8',
-      downloads: '19.6K',
-      rating: 4.5,
-      stars: 487,
-      category: 'Templates',
-      gradient: 'from-yellow-500 to-orange-500'
-    }
-  ];
-
-  const codeSnippets = [
-    {
-      id: 1,
-      title: 'Custom React Hooks Collection',
-      language: 'TypeScript',
-      likes: 542,
-      views: '8.2K'
-    },
-    {
-      id: 2,
-      title: 'Advanced Pagination Logic',
-      language: 'JavaScript',
-      likes: 328,
-      views: '5.1K'
-    },
-    {
-      id: 3,
-      title: 'API Rate Limiter Middleware',
-      language: 'Node.js',
-      likes: 891,
-      views: '12.4K'
+      name: 'Color Wheels Pro',
+      description: 'Advanced color grading wheels for precise control',
+      type: 'Tool',
+      version: '1.8.0',
+      downloads: '61K',
+      price: 'Free',
+      image: '🌈',
+      gradient: 'from-indigo-500 to-blue-600'
     }
   ];
 
   const builds = [
     {
       id: 1,
-      name: 'E-commerce Starter',
-      description: 'Full-stack e-commerce with cart, payments & admin',
-      tech: ['React', 'Node.js', 'PostgreSQL'],
-      stars: 2341
+      name: 'Ultimate Photo Editor',
+      description: 'Complete photo editing software with AI-powered tools',
+      features: ['AI Enhancement', 'Batch Processing', 'RAW Support'],
+      size: '248 MB',
+      version: '5.2.1',
+      downloads: '342K',
+      image: '📷'
     },
     {
       id: 2,
-      name: 'SaaS Dashboard',
-      description: 'Modern dashboard with analytics and user management',
-      tech: ['Next.js', 'TypeScript', 'Prisma'],
-      stars: 1876
+      name: 'Video Color Suite',
+      description: 'Professional video color grading and correction suite',
+      features: ['Real-time Preview', 'LUT Support', 'HDR Grading'],
+      size: '512 MB',
+      version: '3.0.5',
+      downloads: '198K',
+      image: '🎥'
+    },
+    {
+      id: 3,
+      name: 'Creative Studio Bundle',
+      description: 'All-in-one creative toolkit for photographers and videographers',
+      features: ['Photo + Video', '1000+ Presets', 'Cloud Sync'],
+      size: '1.2 GB',
+      version: '2.1.0',
+      downloads: '276K',
+      image: '🎯'
     }
   ];
 
   const categories = [
-    { name: 'All', icon: 'Grid3x3', count: 1247 },
-    { name: 'Auth', icon: 'Shield', count: 89 },
-    { name: 'Backend', icon: 'Server', count: 234 },
-    { name: 'UI', icon: 'Palette', count: 456 },
-    { name: 'Utils', icon: 'Wrench', count: 167 },
-    { name: 'Database', icon: 'Database', count: 123 },
-    { name: 'Templates', icon: 'FileCode', count: 178 }
+    { name: 'All', icon: 'LayoutGrid', count: 847 },
+    { name: 'Presets', icon: 'Palette', count: 234 },
+    { name: 'Overlays', icon: 'Layers', count: 156 },
+    { name: 'LUTs', icon: 'Film', count: 189 },
+    { name: 'Plugins', icon: 'Puzzle', count: 98 },
+    { name: 'Textures', icon: 'ImagePlus', count: 112 },
+    { name: 'Tools', icon: 'Wrench', count: 58 }
   ];
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/50 backdrop-blur-xl sticky top-0 z-50">
+      <header className="border-b border-border bg-card/80 backdrop-blur-lg sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                <span className="text-2xl">⚡</span>
+              <div className="w-11 h-11 bg-gradient-to-br from-amber-400 via-orange-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20">
+                <span className="text-2xl">💡</span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 bg-clip-text text-transparent">
                   FreeLeak.pro
                 </h1>
-                <p className="text-xs text-muted-foreground">Developer Resources Hub</p>
+                <p className="text-xs text-muted-foreground">Free Creative Resources</p>
               </div>
             </div>
             
-            <nav className="hidden md:flex items-center gap-6">
-              <Button variant="ghost" className="text-foreground hover:text-primary">
-                <Icon name="Home" className="mr-2" size={18} />
-                Главная
+            <nav className="hidden md:flex items-center gap-2">
+              <Button 
+                variant={activeSection === 'resources' ? 'default' : 'ghost'}
+                onClick={() => setActiveSection('resources')}
+                className={activeSection === 'resources' ? 'bg-gradient-to-r from-orange-500 to-pink-500' : ''}
+              >
+                <Icon name="Layers" className="mr-2" size={18} />
+                Ресурсы
               </Button>
-              <Button variant="ghost" className="text-foreground hover:text-primary">
+              <Button 
+                variant={activeSection === 'builds' ? 'default' : 'ghost'}
+                onClick={() => setActiveSection('builds')}
+                className={activeSection === 'builds' ? 'bg-gradient-to-r from-orange-500 to-pink-500' : ''}
+              >
                 <Icon name="Package" className="mr-2" size={18} />
-                Каталог
-              </Button>
-              <Button variant="ghost" className="text-foreground hover:text-primary">
-                <Icon name="Code" className="mr-2" size={18} />
-                Библиотека
-              </Button>
-              <Button variant="ghost" className="text-foreground hover:text-primary">
-                <Icon name="Box" className="mr-2" size={18} />
                 Сборки
               </Button>
             </nav>
 
             <div className="flex items-center gap-3">
-              <Button variant="outline" size="sm">
-                <Icon name="LogIn" className="mr-2" size={16} />
+              <Button variant="outline" size="sm" className="hidden sm:flex">
+                <Icon name="User" className="mr-2" size={16} />
                 Войти
               </Button>
-              <Button size="sm" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90">
+              <Button size="sm" className="bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90">
                 <Icon name="Upload" className="mr-2" size={16} />
                 Загрузить
               </Button>
@@ -180,46 +172,52 @@ const Index = () => {
         </div>
       </header>
 
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 blur-3xl"></div>
+      <section className="relative py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,146,60,0.15),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.15),transparent_50%)]"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">
-              🚀 Платформа для разработчиков
+          <div className="max-w-4xl mx-auto text-center">
+            <Badge className="mb-4 bg-gradient-to-r from-orange-500/20 to-pink-500/20 text-orange-300 border-orange-500/30 backdrop-blur-sm">
+              💡 Абсолютно бесплатно
             </Badge>
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-secondary bg-clip-text text-transparent">
-              Найди идеальные инструменты для своего проекта
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                Профессиональные{' '}
+              </span>
+              <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 bg-clip-text text-transparent">
+                ресурсы для креатива
+              </span>
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Плагины, коды, сборки — всё что нужно для быстрой разработки. Управление версиями, документация и поддержка сообщества.
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+              Пресеты, оверлеи, LUT-файлы, плагины и готовые сборки — всё что нужно для создания потрясающего контента
             </p>
             
-            <div className="flex gap-3 max-w-2xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8">
               <div className="relative flex-1">
                 <Icon name="Search" className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
                 <Input 
-                  placeholder="Поиск по названию, тегам, коду..." 
-                  className="pl-12 h-14 text-lg bg-card border-border/50"
+                  placeholder="Поиск пресетов, оверлеев, плагинов..." 
+                  className="pl-12 h-12 md:h-14 text-base md:text-lg bg-card/50 border-border/50 backdrop-blur-sm"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <Button size="lg" className="h-14 px-8 bg-gradient-to-r from-primary to-secondary">
-                Искать
+              <Button size="lg" className="h-12 md:h-14 px-8 bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-lg shadow-orange-500/25">
+                <Icon name="Search" className="mr-2" size={20} />
+                Найти
               </Button>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((cat) => (
                 <Button 
                   key={cat.name} 
                   variant="outline" 
                   size="sm"
-                  className="hover:bg-primary/10 hover:border-primary/50 transition-all"
+                  className="hover:bg-orange-500/10 hover:border-orange-500/50 transition-all backdrop-blur-sm"
                 >
                   <Icon name={cat.icon as any} className="mr-2" size={16} />
                   {cat.name}
-                  <Badge variant="secondary" className="ml-2">{cat.count}</Badge>
+                  <Badge variant="secondary" className="ml-2 bg-muted/50">{cat.count}</Badge>
                 </Button>
               ))}
             </div>
@@ -227,165 +225,144 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-12">
-              <TabsTrigger value="plugins">
-                <Icon name="Package" className="mr-2" size={18} />
-                Плагины
-              </TabsTrigger>
-              <TabsTrigger value="codes">
-                <Icon name="Code" className="mr-2" size={18} />
-                Коды
-              </TabsTrigger>
-              <TabsTrigger value="builds">
-                <Icon name="Box" className="mr-2" size={18} />
-                Сборки
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="plugins" className="space-y-8">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold">🔥 Топовые плагины</h3>
-                <Button variant="ghost" className="text-primary">
-                  Посмотреть все
+          {activeSection === 'resources' && (
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">🔥 Популярные ресурсы</h3>
+                  <p className="text-muted-foreground">Лучшие материалы для фото и видео</p>
+                </div>
+                <Button variant="ghost" className="text-orange-500 hover:text-orange-400">
+                  Показать всё
                   <Icon name="ArrowRight" className="ml-2" size={16} />
                 </Button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {trendingPlugins.map((plugin) => (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                {resources.map((resource) => (
                   <Card 
-                    key={plugin.id} 
-                    className="group relative overflow-hidden border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10"
+                    key={resource.id} 
+                    className="group relative overflow-hidden border-border/50 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 bg-card/50 backdrop-blur-sm"
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${plugin.gradient} opacity-0 group-hover:opacity-5 transition-opacity`}></div>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${resource.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300`}></div>
                     
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start gap-3">
+                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${resource.gradient} flex items-center justify-center text-2xl shadow-lg shrink-0`}>
+                          {resource.image}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2 mb-1">
+                            <CardTitle className="text-base md:text-lg group-hover:text-orange-500 transition-colors line-clamp-1">
+                              {resource.name}
+                            </CardTitle>
+                            <Badge className="shrink-0 text-xs bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
+                              {resource.price}
+                            </Badge>
+                          </div>
+                          <Badge variant="outline" className="text-xs">{resource.type}</Badge>
+                        </div>
+                      </div>
+                    </CardHeader>
+
+                    <CardContent className="pb-3">
+                      <CardDescription className="line-clamp-2 text-sm mb-3">
+                        {resource.description}
+                      </CardDescription>
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Icon name="Download" size={14} />
+                          <span>{resource.downloads}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Icon name="Package" size={14} />
+                          <span>v{resource.version}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+
+                    <CardFooter className="pt-3">
+                      <Button className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-md">
+                        <Icon name="Download" className="mr-2" size={16} />
+                        Скачать бесплатно
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeSection === 'builds' && (
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">📦 Готовые сборки</h3>
+                  <p className="text-muted-foreground">Полноценные программы для работы</p>
+                </div>
+                <Button variant="ghost" className="text-orange-500 hover:text-orange-400">
+                  Показать всё
+                  <Icon name="ArrowRight" className="ml-2" size={16} />
+                </Button>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {builds.map((build) => (
+                  <Card 
+                    key={build.id} 
+                    className="group hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 bg-card/50 backdrop-blur-sm"
+                  >
                     <CardHeader>
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-start gap-4">
+                        <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-pink-500 flex items-center justify-center text-3xl shadow-lg shrink-0">
+                          {build.image}
+                        </div>
                         <div className="flex-1">
-                          <CardTitle className="flex items-center gap-2 mb-2 group-hover:text-primary transition-colors">
-                            {plugin.name}
+                          <CardTitle className="text-xl mb-2 group-hover:text-orange-500 transition-colors">
+                            {build.name}
                           </CardTitle>
-                          <CardDescription className="line-clamp-2">
-                            {plugin.description}
+                          <CardDescription className="text-sm">
+                            {build.description}
                           </CardDescription>
                         </div>
-                        <Badge className={`bg-gradient-to-r ${plugin.gradient} text-white border-0 shrink-0`}>
-                          {plugin.category}
-                        </Badge>
                       </div>
                     </CardHeader>
 
-                    <CardContent>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Icon name="Download" size={16} />
-                          <span>{plugin.downloads}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Icon name="Star" size={16} className="fill-yellow-500 text-yellow-500" />
-                          <span>{plugin.rating}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Icon name="GitFork" size={16} />
-                          <span>{plugin.stars}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-
-                    <CardFooter className="flex items-center justify-between">
-                      <code className="text-xs bg-muted px-2 py-1 rounded">v{plugin.version}</code>
-                      <div className="flex gap-2">
-                        <Button size="sm" variant="ghost">
-                          <Icon name="Eye" size={16} />
-                        </Button>
-                        <Button size="sm" className="bg-gradient-to-r from-primary to-secondary">
-                          <Icon name="Download" className="mr-2" size={16} />
-                          Скачать
-                        </Button>
-                      </div>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="codes" className="space-y-8">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold">💎 Популярные сниппеты</h3>
-                <Button variant="ghost" className="text-primary">
-                  Посмотреть все
-                  <Icon name="ArrowRight" className="ml-2" size={16} />
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {codeSnippets.map((snippet) => (
-                  <Card key={snippet.id} className="hover:border-primary/50 transition-all">
-                    <CardHeader>
-                      <CardTitle className="text-lg">{snippet.title}</CardTitle>
-                      <Badge variant="outline" className="w-fit">{snippet.language}</Badge>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1">
-                          <Icon name="Heart" size={16} />
-                          <span>{snippet.likes}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Icon name="Eye" size={16} />
-                          <span>{snippet.views}</span>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button className="w-full" variant="outline">
-                        <Icon name="Code" className="mr-2" size={16} />
-                        Посмотреть код
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="builds" className="space-y-8">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold">🎯 Готовые сборки</h3>
-                <Button variant="ghost" className="text-primary">
-                  Посмотреть все
-                  <Icon name="ArrowRight" className="ml-2" size={16} />
-                </Button>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {builds.map((build) => (
-                  <Card key={build.id} className="hover:border-primary/50 transition-all">
-                    <CardHeader>
-                      <CardTitle className="flex items-center justify-between">
-                        {build.name}
-                        <div className="flex items-center gap-1 text-sm font-normal text-muted-foreground">
-                          <Icon name="Star" size={16} className="fill-yellow-500 text-yellow-500" />
-                          <span>{build.stars}</span>
-                        </div>
-                      </CardTitle>
-                      <CardDescription>{build.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
+                    <CardContent className="space-y-4">
                       <div className="flex flex-wrap gap-2">
-                        {build.tech.map((tech) => (
-                          <Badge key={tech} variant="secondary">{tech}</Badge>
+                        {build.features.map((feature) => (
+                          <Badge key={feature} variant="secondary" className="bg-muted/50">
+                            {feature}
+                          </Badge>
                         ))}
                       </div>
+
+                      <Separator />
+
+                      <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div>
+                          <div className="text-muted-foreground text-xs mb-1">Размер</div>
+                          <div className="font-medium">{build.size}</div>
+                        </div>
+                        <div>
+                          <div className="text-muted-foreground text-xs mb-1">Версия</div>
+                          <div className="font-medium">v{build.version}</div>
+                        </div>
+                        <div>
+                          <div className="text-muted-foreground text-xs mb-1">Загрузки</div>
+                          <div className="font-medium">{build.downloads}</div>
+                        </div>
+                      </div>
                     </CardContent>
-                    <CardFooter className="gap-2">
-                      <Button className="flex-1" variant="outline">
-                        <Icon name="Eye" className="mr-2" size={16} />
-                        Демо
+
+                    <CardFooter className="gap-3">
+                      <Button variant="outline" className="flex-1">
+                        <Icon name="Info" className="mr-2" size={16} />
+                        Подробнее
                       </Button>
-                      <Button className="flex-1 bg-gradient-to-r from-primary to-secondary">
+                      <Button className="flex-1 bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-md">
                         <Icon name="Download" className="mr-2" size={16} />
                         Скачать
                       </Button>
@@ -393,62 +370,65 @@ const Index = () => {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
-          </Tabs>
+            </div>
+          )}
         </div>
       </section>
 
-      <footer className="border-t border-border mt-20 py-12 bg-card/30">
+      <footer className="border-t border-border mt-16 md:mt-24 py-12 bg-card/30 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                  <span className="text-xl">⚡</span>
+                <div className="w-9 h-9 bg-gradient-to-br from-amber-400 via-orange-500 to-pink-500 rounded-lg flex items-center justify-center">
+                  <span className="text-xl">💡</span>
                 </div>
                 <span className="font-bold text-lg">FreeLeak.pro</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Платформа для разработчиков. Делись кодом, находи решения, создавай лучше.
+                Бесплатные ресурсы для фотографов, видеографов и дизайнеров
               </p>
             </div>
             
             <div>
               <h4 className="font-semibold mb-4">Ресурсы</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="hover:text-primary cursor-pointer">Документация</div>
-                <div className="hover:text-primary cursor-pointer">API</div>
-                <div className="hover:text-primary cursor-pointer">Сообщество</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Пресеты</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Оверлеи</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">LUT-файлы</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Плагины</div>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Компания</h4>
+              <h4 className="font-semibold mb-4">Поддержка</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="hover:text-primary cursor-pointer">О нас</div>
-                <div className="hover:text-primary cursor-pointer">Блог</div>
-                <div className="hover:text-primary cursor-pointer">Карьера</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Помощь</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">FAQ</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Контакты</div>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Связь</h4>
-              <div className="flex gap-3">
-                <Button size="sm" variant="outline" className="w-10 h-10 p-0">
-                  <Icon name="Github" size={18} />
+              <h4 className="font-semibold mb-4">Соцсети</h4>
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline" className="w-9 h-9 p-0 hover:bg-orange-500/10 hover:border-orange-500/50">
+                  <Icon name="Github" size={16} />
                 </Button>
-                <Button size="sm" variant="outline" className="w-10 h-10 p-0">
-                  <Icon name="Twitter" size={18} />
+                <Button size="sm" variant="outline" className="w-9 h-9 p-0 hover:bg-orange-500/10 hover:border-orange-500/50">
+                  <Icon name="Twitter" size={16} />
                 </Button>
-                <Button size="sm" variant="outline" className="w-10 h-10 p-0">
-                  <Icon name="MessageCircle" size={18} />
+                <Button size="sm" variant="outline" className="w-9 h-9 p-0 hover:bg-orange-500/10 hover:border-orange-500/50">
+                  <Icon name="Instagram" size={16} />
                 </Button>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>© 2024 FreeLeak.pro. Все права защищены.</p>
+          <Separator className="mb-6" />
+          
+          <div className="text-center text-sm text-muted-foreground">
+            <p>© 2024 FreeLeak.pro — Все ресурсы бесплатны для личного и коммерческого использования</p>
           </div>
         </div>
       </footer>

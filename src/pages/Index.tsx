@@ -15,197 +15,218 @@ const Index = () => {
     {
       id: 1,
       name: 'EssentialsX',
-      description: 'Базовый плагин с командами, экономикой, варпами и телепортацией',
+      description: 'Основа любого сервера: команды для игроков, телепортация, варпы, экономика, киты и дома',
       type: 'Плагин',
       category: 'Утилиты',
       version: '2.20.1',
       downloads: '8.4M',
-      price: 'Бесплатно',
       image: '⚙️',
       gradient: 'from-blue-500 to-cyan-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/essentialsx.9089/'
     },
     {
       id: 2,
       name: 'WorldEdit',
-      description: 'Мощный инструмент для редактирования мира и строительства',
+      description: 'Мощнейший инструмент для редактирования мира: копирование, вставка, замена блоков командами',
       type: 'Плагин',
-      category: 'Инструменты',
+      category: 'Строительство',
       version: '7.2.15',
       downloads: '6.2M',
-      price: 'Бесплатно',
       image: '🛠️',
       gradient: 'from-emerald-500 to-teal-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://dev.bukkit.org/projects/worldedit'
     },
     {
       id: 3,
       name: 'LuckPerms',
-      description: 'Современная система прав и групп с веб-редактором',
+      description: 'Современная система прав и групп с веб-редактором, префиксами и удобным управлением',
       type: 'Плагин',
       category: 'Администрирование',
       version: '5.4.102',
       downloads: '7.1M',
-      price: 'Бесплатно',
       image: '🔐',
       gradient: 'from-violet-500 to-purple-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://luckperms.net/download'
     },
     {
       id: 4,
       name: 'Vault',
-      description: 'API для экономики, прав и чата - необходим для большинства плагинов',
+      description: 'API библиотека для экономики, прав и чата - обязателен для работы большинства плагинов',
       type: 'Плагин',
       category: 'API',
       version: '1.7.3',
       downloads: '9.8M',
-      price: 'Бесплатно',
       image: '💰',
       gradient: 'from-amber-500 to-orange-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/vault.34315/'
     },
     {
       id: 5,
       name: 'ProtocolLib',
-      description: 'Библиотека для работы с пакетами Minecraft протокола',
+      description: 'Библиотека для работы с пакетами протокола - требуется для плагинов с анимациями и холограммами',
       type: 'Плагин',
       category: 'API',
       version: '5.1.0',
       downloads: '5.3M',
-      price: 'Бесплатно',
       image: '📡',
       gradient: 'from-indigo-500 to-blue-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/protocollib.1997/'
     },
     {
       id: 6,
       name: 'WorldGuard',
-      description: 'Защита регионов и управление правилами мира',
+      description: 'Защита регионов и территорий, управление флагами мира, запрет PvP и защита от гриферов',
       type: 'Плагин',
       category: 'Защита',
       version: '7.0.9',
       downloads: '4.9M',
-      price: 'Бесплатно',
       image: '🛡️',
       gradient: 'from-red-500 to-rose-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://dev.bukkit.org/projects/worldguard'
     },
     {
       id: 7,
       name: 'Citizens',
-      description: 'Создание NPC с квестами, торговлей и диалогами',
+      description: 'Создание и настройка NPC с квестами, торговлей, диалогами и кастомным поведением',
       type: 'Плагин',
       category: 'Геймплей',
       version: '2.0.32',
       downloads: '3.7M',
-      price: 'Бесплатно',
       image: '🧙',
       gradient: 'from-pink-500 to-fuchsia-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/citizens.13811/'
     },
     {
       id: 8,
       name: 'PlaceholderAPI',
-      description: 'Универсальные переменные для плагинов и табличек',
+      description: 'Универсальные переменные для отображения статистики игроков в табе, табличках и скорборде',
       type: 'Плагин',
       category: 'API',
       version: '2.11.5',
       downloads: '6.5M',
-      price: 'Бесплатно',
       image: '📝',
       gradient: 'from-cyan-500 to-blue-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/placeholderapi.6245/'
     },
     {
       id: 9,
       name: 'CoreProtect',
-      description: 'Логирование действий игроков и откат изменений',
+      description: 'Логирование всех действий игроков с возможностью отката изменений и поиска гриферов',
       type: 'Плагин',
       category: 'Администрирование',
       version: '21.3',
       downloads: '2.8M',
-      price: 'Бесплатно',
       image: '📋',
       gradient: 'from-green-500 to-emerald-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/coreprotect.8631/'
     },
     {
       id: 10,
       name: 'Multiverse-Core',
-      description: 'Управление множественными мирами на сервере',
+      description: 'Создание и управление несколькими мирами на одном сервере с разными настройками',
       type: 'Плагин',
       category: 'Миры',
       version: '4.3.12',
       downloads: '3.2M',
-      price: 'Бесплатно',
       image: '🌍',
       gradient: 'from-teal-500 to-cyan-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://dev.bukkit.org/projects/multiverse-core'
     },
     {
       id: 11,
       name: 'ChestShop',
-      description: 'Система магазинов с сундуками для игроков',
+      description: 'Торговые сундуки для игроков - продавайте и покупайте предметы через магазины',
       type: 'Плагин',
       category: 'Экономика',
       version: '3.12.2',
       downloads: '2.1M',
-      price: 'Бесплатно',
       image: '🏪',
       gradient: 'from-yellow-500 to-amber-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/chestshop.51856/'
     },
     {
       id: 12,
-      name: 'Конфиг spawn.yml',
-      description: 'Готовая конфигурация спавна для FunTime сервера',
-      type: 'Конфиг',
-      category: 'Конфигурация',
-      version: '1.0',
-      downloads: '543',
-      price: 'Бесплатно',
-      image: '🎯',
+      name: 'AuthMe',
+      description: 'Система регистрации и авторизации игроков для защиты аккаунтов на пиратских серверах',
+      type: 'Плагин',
+      category: 'Защита',
+      version: '5.6.0',
+      downloads: '4.2M',
+      image: '🔑',
       gradient: 'from-orange-500 to-red-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/authmereloaded.6269/'
     },
     {
       id: 13,
-      name: 'Конфиг permissions.yml',
-      description: 'Настройка прав для FunTime сборки',
-      type: 'Конфиг',
-      category: 'Конфигурация',
-      version: '1.0',
-      downloads: '412',
-      price: 'Бесплатно',
-      image: '⚡',
+      name: 'DeluxeMenu',
+      description: 'Создание красивых кастомных GUI меню с анимациями, командами и условиями отображения',
+      type: 'Плагин',
+      category: 'Интерфейс',
+      version: '1.13.8',
+      downloads: '892K',
+      image: '📱',
       gradient: 'from-purple-500 to-pink-600',
-      downloadUrl: '#'
+      downloadUrl: 'https://www.spigotmc.org/resources/deluxemenus.11734/'
     },
     {
       id: 14,
-      name: 'AntiCheat Premium',
-      description: 'Продвинутая защита от читов и эксплойтов из FunTime',
+      name: 'BetterRTP',
+      description: 'Случайная телепортация игроков с настройкой границ, биомов и безопасных зон',
       type: 'Плагин',
-      category: 'Защита',
-      version: '2.5.1',
-      downloads: '1.2M',
-      price: 'Бесплатно',
-      image: '🚫',
-      gradient: 'from-red-500 to-orange-600',
-      downloadUrl: '#'
+      category: 'Телепортация',
+      version: '3.6.15',
+      downloads: '647K',
+      image: '🎲',
+      gradient: 'from-blue-500 to-purple-600',
+      downloadUrl: 'https://www.spigotmc.org/resources/betterrtp.36081/'
     },
     {
       id: 15,
-      name: 'CustomGUI Builder',
-      description: 'Конструктор кастомных меню и интерфейсов',
+      name: 'TPA',
+      description: 'Запросы телепортации между игроками с таймером принятия и защитой от спама',
+      type: 'Плагин',
+      category: 'Телепортация',
+      version: '5.2.1',
+      downloads: '1.3M',
+      image: '📍',
+      gradient: 'from-green-500 to-teal-600',
+      downloadUrl: 'https://www.spigotmc.org/resources/tpa.26593/'
+    },
+    {
+      id: 16,
+      name: 'TabList',
+      description: 'Настройка таба с анимацией, переменными, группами и кастомным хедером/футером',
       type: 'Плагин',
       category: 'Интерфейс',
-      version: '1.8.4',
-      downloads: '892K',
-      price: 'Бесплатно',
-      image: '🎨',
-      gradient: 'from-blue-500 to-purple-600',
-      downloadUrl: '#'
+      version: '5.6.3',
+      downloads: '1.8M',
+      image: '📊',
+      gradient: 'from-indigo-500 to-purple-600',
+      downloadUrl: 'https://www.spigotmc.org/resources/tab.57806/'
+    },
+    {
+      id: 17,
+      name: 'GriefPrevention',
+      description: 'Автоматическая защита территорий игроков с помощью золотой лопаты и приватов',
+      type: 'Плагин',
+      category: 'Защита',
+      version: '16.18',
+      downloads: '2.6M',
+      image: '🔒',
+      gradient: 'from-yellow-500 to-orange-600',
+      downloadUrl: 'https://www.spigotmc.org/resources/griefprevention.1884/'
+    },
+    {
+      id: 18,
+      name: 'ClearLag',
+      description: 'Очистка лишних предметов и мобов для снижения лагов и оптимизации сервера',
+      type: 'Плагин',
+      category: 'Оптимизация',
+      version: '3.2.2',
+      downloads: '3.1M',
+      image: '🧹',
+      gradient: 'from-cyan-500 to-blue-600',
+      downloadUrl: 'https://www.spigotmc.org/resources/clearlagg.68271/'
     }
   ];
 
@@ -259,15 +280,16 @@ const Index = () => {
   const categories = [
     { name: 'Все', icon: 'LayoutGrid' },
     { name: 'Утилиты', icon: 'Settings' },
-    { name: 'Инструменты', icon: 'Wrench' },
+    { name: 'Строительство', icon: 'Hammer' },
     { name: 'Администрирование', icon: 'Shield' },
     { name: 'API', icon: 'Code' },
     { name: 'Защита', icon: 'Lock' },
     { name: 'Геймплей', icon: 'Gamepad2' },
     { name: 'Миры', icon: 'Globe' },
     { name: 'Экономика', icon: 'DollarSign' },
-    { name: 'Конфигурация', icon: 'FileText' },
-    { name: 'Интерфейс', icon: 'Palette' }
+    { name: 'Интерфейс', icon: 'Palette' },
+    { name: 'Телепортация', icon: 'Navigation' },
+    { name: 'Оптимизация', icon: 'Zap' }
   ];
 
   const filteredResources = useMemo(() => {
@@ -304,7 +326,7 @@ const Index = () => {
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 bg-clip-text text-transparent">
                   FreeLeak.pro
                 </h1>
-                <p className="text-xs text-muted-foreground">Бесплатные ресурсы для серверов</p>
+                <p className="text-xs text-muted-foreground">Minecraft плагины и сборки</p>
               </div>
             </div>
             
@@ -357,14 +379,14 @@ const Index = () => {
               </span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Лучшие плагины, конфиги и готовые сборки серверов — всё для быстрого старта вашего проекта
+              Лучшие плагины и готовые сборки серверов — всё для быстрого старта вашего проекта
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8">
               <div className="relative flex-1">
                 <Icon name="Search" className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
                 <Input 
-                  placeholder="Поиск плагинов, сборок, конфигов..." 
+                  placeholder="Поиск плагинов и сборок..." 
                   className="pl-12 h-12 md:h-14 text-base md:text-lg bg-card/50 border-border/50 backdrop-blur-sm"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -373,7 +395,6 @@ const Index = () => {
               <Button 
                 size="lg" 
                 className="h-12 md:h-14 px-8 bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-lg shadow-orange-500/25"
-                onClick={() => {}}
               >
                 <Icon name="Search" className="mr-2" size={20} />
                 Найти
@@ -410,10 +431,10 @@ const Index = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                    {selectedCategory === 'Все' ? '🔥 Все ресурсы' : `📦 ${selectedCategory}`}
+                    {selectedCategory === 'Все' ? '🔥 Все плагины' : `📦 ${selectedCategory}`}
                   </h3>
                   <p className="text-muted-foreground">
-                    {filteredResources.length} {filteredResources.length === 1 ? 'ресурс' : 'ресурсов'} найдено
+                    {filteredResources.length} {filteredResources.length === 1 ? 'плагин' : filteredResources.length < 5 ? 'плагина' : 'плагинов'} найдено
                   </p>
                 </div>
               </div>
@@ -436,11 +457,8 @@ const Index = () => {
                             <CardTitle className="text-base md:text-lg group-hover:text-orange-500 transition-colors line-clamp-1">
                               {resource.name}
                             </CardTitle>
-                            <Badge className="shrink-0 text-xs bg-emerald-500/20 text-emerald-300 border-emerald-500/30">
-                              {resource.price}
-                            </Badge>
                           </div>
-                          <Badge variant="outline" className="text-xs">{resource.type}</Badge>
+                          <Badge variant="outline" className="text-xs">{resource.category}</Badge>
                         </div>
                       </div>
                     </CardHeader>
@@ -458,15 +476,14 @@ const Index = () => {
                           <Icon name="Package" size={14} />
                           <span>v{resource.version}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Icon name="Tag" size={14} />
-                          <span>{resource.category}</span>
-                        </div>
                       </div>
                     </CardContent>
 
                     <CardFooter className="pt-3">
-                      <Button className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-md">
+                      <Button 
+                        className="w-full bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-md"
+                        onClick={() => window.open(resource.downloadUrl, '_blank')}
+                      >
                         <Icon name="Download" className="mr-2" size={16} />
                         Скачать бесплатно
                       </Button>
@@ -491,7 +508,7 @@ const Index = () => {
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold mb-2">📦 Готовые сборки</h3>
                   <p className="text-muted-foreground">
-                    {filteredBuilds.length} {filteredBuilds.length === 1 ? 'сборка' : 'сборок'} найдено
+                    {filteredBuilds.length} {filteredBuilds.length === 1 ? 'сборка' : filteredBuilds.length < 5 ? 'сборки' : 'сборок'} найдено
                   </p>
                 </div>
               </div>
@@ -597,7 +614,7 @@ const Index = () => {
               <h4 className="font-semibold mb-4">Ресурсы</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="hover:text-orange-500 cursor-pointer transition-colors">Плагины</div>
-                <div className="hover:text-orange-500 cursor-pointer transition-colors">Конфиги</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Сборки</div>
                 <div className="hover:text-orange-500 cursor-pointer transition-colors">Моды</div>
               </div>
             </div>
@@ -627,7 +644,7 @@ const Index = () => {
           <Separator className="mb-6" />
           
           <div className="text-center text-sm text-muted-foreground">
-            <p>© 2024 FreeLeak.pro — Все ресурсы бесплатны для использования</p>
+            <p>© 2024 FreeLeak.pro — Все плагины бесплатны для использования</p>
           </div>
         </div>
       </footer>

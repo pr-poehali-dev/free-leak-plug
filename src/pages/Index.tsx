@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,118 +9,287 @@ import Icon from '@/components/ui/icon';
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeSection, setActiveSection] = useState<'resources' | 'builds'>('resources');
+  const [selectedCategory, setSelectedCategory] = useState('Все');
 
   const resources = [
     {
       id: 1,
-      name: 'Ultra Presets Pack',
-      description: 'Professional color grading presets for photos and videos',
-      type: 'Preset',
-      version: '3.2.1',
-      downloads: '127K',
-      price: 'Free',
-      image: '🎨',
-      gradient: 'from-violet-500 to-purple-600'
+      name: 'EssentialsX',
+      description: 'Базовый плагин с командами, экономикой, варпами и телепортацией',
+      type: 'Плагин',
+      category: 'Утилиты',
+      version: '2.20.1',
+      downloads: '8.4M',
+      price: 'Бесплатно',
+      image: '⚙️',
+      gradient: 'from-blue-500 to-cyan-600',
+      downloadUrl: '#'
     },
     {
       id: 2,
-      name: 'LightLeak Overlays Vol.1',
-      description: 'High-quality light leak overlays for creative editing',
-      type: 'Overlay',
-      version: '2.0.0',
-      downloads: '89K',
-      price: 'Free',
-      image: '✨',
-      gradient: 'from-amber-500 to-orange-600'
+      name: 'WorldEdit',
+      description: 'Мощный инструмент для редактирования мира и строительства',
+      type: 'Плагин',
+      category: 'Инструменты',
+      version: '7.2.15',
+      downloads: '6.2M',
+      price: 'Бесплатно',
+      image: '🛠️',
+      gradient: 'from-emerald-500 to-teal-600',
+      downloadUrl: '#'
     },
     {
       id: 3,
-      name: 'Cinematic LUTs Collection',
-      description: 'Film-grade color lookup tables for video production',
-      type: 'LUT',
-      version: '1.5.4',
-      downloads: '156K',
-      price: 'Free',
-      image: '🎬',
-      gradient: 'from-blue-500 to-cyan-600'
+      name: 'LuckPerms',
+      description: 'Современная система прав и групп с веб-редактором',
+      type: 'Плагин',
+      category: 'Администрирование',
+      version: '5.4.102',
+      downloads: '7.1M',
+      price: 'Бесплатно',
+      image: '🔐',
+      gradient: 'from-violet-500 to-purple-600',
+      downloadUrl: '#'
     },
     {
       id: 4,
-      name: 'Advanced Retouching Plugin',
-      description: 'Professional skin retouching and beauty tools',
-      type: 'Plugin',
-      version: '4.1.0',
-      downloads: '73K',
-      price: 'Free',
-      image: '💎',
-      gradient: 'from-pink-500 to-rose-600'
+      name: 'Vault',
+      description: 'API для экономики, прав и чата - необходим для большинства плагинов',
+      type: 'Плагин',
+      category: 'API',
+      version: '1.7.3',
+      downloads: '9.8M',
+      price: 'Бесплатно',
+      image: '💰',
+      gradient: 'from-amber-500 to-orange-600',
+      downloadUrl: '#'
     },
     {
       id: 5,
-      name: 'Texture & Grain Pack',
-      description: 'Film grain and texture overlays for authentic analog look',
-      type: 'Texture',
-      version: '2.3.2',
-      downloads: '94K',
-      price: 'Free',
-      image: '📸',
-      gradient: 'from-emerald-500 to-teal-600'
+      name: 'ProtocolLib',
+      description: 'Библиотека для работы с пакетами Minecraft протокола',
+      type: 'Плагин',
+      category: 'API',
+      version: '5.1.0',
+      downloads: '5.3M',
+      price: 'Бесплатно',
+      image: '📡',
+      gradient: 'from-indigo-500 to-blue-600',
+      downloadUrl: '#'
     },
     {
       id: 6,
-      name: 'Color Wheels Pro',
-      description: 'Advanced color grading wheels for precise control',
-      type: 'Tool',
-      version: '1.8.0',
-      downloads: '61K',
-      price: 'Free',
-      image: '🌈',
-      gradient: 'from-indigo-500 to-blue-600'
+      name: 'WorldGuard',
+      description: 'Защита регионов и управление правилами мира',
+      type: 'Плагин',
+      category: 'Защита',
+      version: '7.0.9',
+      downloads: '4.9M',
+      price: 'Бесплатно',
+      image: '🛡️',
+      gradient: 'from-red-500 to-rose-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 7,
+      name: 'Citizens',
+      description: 'Создание NPC с квестами, торговлей и диалогами',
+      type: 'Плагин',
+      category: 'Геймплей',
+      version: '2.0.32',
+      downloads: '3.7M',
+      price: 'Бесплатно',
+      image: '🧙',
+      gradient: 'from-pink-500 to-fuchsia-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 8,
+      name: 'PlaceholderAPI',
+      description: 'Универсальные переменные для плагинов и табличек',
+      type: 'Плагин',
+      category: 'API',
+      version: '2.11.5',
+      downloads: '6.5M',
+      price: 'Бесплатно',
+      image: '📝',
+      gradient: 'from-cyan-500 to-blue-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 9,
+      name: 'CoreProtect',
+      description: 'Логирование действий игроков и откат изменений',
+      type: 'Плагин',
+      category: 'Администрирование',
+      version: '21.3',
+      downloads: '2.8M',
+      price: 'Бесплатно',
+      image: '📋',
+      gradient: 'from-green-500 to-emerald-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 10,
+      name: 'Multiverse-Core',
+      description: 'Управление множественными мирами на сервере',
+      type: 'Плагин',
+      category: 'Миры',
+      version: '4.3.12',
+      downloads: '3.2M',
+      price: 'Бесплатно',
+      image: '🌍',
+      gradient: 'from-teal-500 to-cyan-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 11,
+      name: 'ChestShop',
+      description: 'Система магазинов с сундуками для игроков',
+      type: 'Плагин',
+      category: 'Экономика',
+      version: '3.12.2',
+      downloads: '2.1M',
+      price: 'Бесплатно',
+      image: '🏪',
+      gradient: 'from-yellow-500 to-amber-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 12,
+      name: 'Конфиг spawn.yml',
+      description: 'Готовая конфигурация спавна для FunTime сервера',
+      type: 'Конфиг',
+      category: 'Конфигурация',
+      version: '1.0',
+      downloads: '543',
+      price: 'Бесплатно',
+      image: '🎯',
+      gradient: 'from-orange-500 to-red-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 13,
+      name: 'Конфиг permissions.yml',
+      description: 'Настройка прав для FunTime сборки',
+      type: 'Конфиг',
+      category: 'Конфигурация',
+      version: '1.0',
+      downloads: '412',
+      price: 'Бесплатно',
+      image: '⚡',
+      gradient: 'from-purple-500 to-pink-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 14,
+      name: 'AntiCheat Premium',
+      description: 'Продвинутая защита от читов и эксплойтов из FunTime',
+      type: 'Плагин',
+      category: 'Защита',
+      version: '2.5.1',
+      downloads: '1.2M',
+      price: 'Бесплатно',
+      image: '🚫',
+      gradient: 'from-red-500 to-orange-600',
+      downloadUrl: '#'
+    },
+    {
+      id: 15,
+      name: 'CustomGUI Builder',
+      description: 'Конструктор кастомных меню и интерфейсов',
+      type: 'Плагин',
+      category: 'Интерфейс',
+      version: '1.8.4',
+      downloads: '892K',
+      price: 'Бесплатно',
+      image: '🎨',
+      gradient: 'from-blue-500 to-purple-600',
+      downloadUrl: '#'
     }
   ];
 
   const builds = [
     {
       id: 1,
-      name: 'Ultimate Photo Editor',
-      description: 'Complete photo editing software with AI-powered tools',
-      features: ['AI Enhancement', 'Batch Processing', 'RAW Support'],
-      size: '248 MB',
-      version: '5.2.1',
-      downloads: '342K',
-      image: '📷'
+      name: 'Сборка FunTime',
+      description: 'Топовая копия сервера FunTime с полным набором плагинов, мини-играми и уникальными механиками',
+      features: ['50+ плагинов', 'Мини-игры', 'Кастомные механики', 'Готовые конфиги'],
+      size: '847 MB',
+      version: '1.0',
+      downloads: '12.4K',
+      image: '🎮',
+      downloadUrl: 'https://cloud.mail.ru/public/nNFX/Q7BoKLxeb'
     },
     {
       id: 2,
-      name: 'Video Color Suite',
-      description: 'Professional video color grading and correction suite',
-      features: ['Real-time Preview', 'LUT Support', 'HDR Grading'],
+      name: 'Survival+ Сборка',
+      description: 'Расширенный выживание с RPG элементами, кастомными мобами и данжами',
+      features: ['RPG система', 'Кастомные мобы', 'Данжи', 'Квесты'],
       size: '512 MB',
-      version: '3.0.5',
-      downloads: '198K',
-      image: '🎥'
+      version: '2.3.1',
+      downloads: '8.7K',
+      image: '⚔️',
+      downloadUrl: '#'
     },
     {
       id: 3,
-      name: 'Creative Studio Bundle',
-      description: 'All-in-one creative toolkit for photographers and videographers',
-      features: ['Photo + Video', '1000+ Presets', 'Cloud Sync'],
-      size: '1.2 GB',
-      version: '2.1.0',
-      downloads: '276K',
-      image: '🎯'
+      name: 'SkyBlock Ultimate',
+      description: 'Полная сборка SkyBlock с экономикой, островами и челленджами',
+      features: ['Острова', 'Экономика', 'Челленджи', 'Кооп режим'],
+      size: '324 MB',
+      version: '1.5.0',
+      downloads: '15.2K',
+      image: '🏝️',
+      downloadUrl: '#'
+    },
+    {
+      id: 4,
+      name: 'Prison Mega Pack',
+      description: 'Сборка для Prison серверов с рангами, шахтами и аукционом',
+      features: ['Система рангов', 'Авто-шахты', 'Аукцион', 'PvP арены'],
+      size: '428 MB',
+      version: '3.1.2',
+      downloads: '6.9K',
+      image: '⛏️',
+      downloadUrl: '#'
     }
   ];
 
   const categories = [
-    { name: 'All', icon: 'LayoutGrid', count: 847 },
-    { name: 'Presets', icon: 'Palette', count: 234 },
-    { name: 'Overlays', icon: 'Layers', count: 156 },
-    { name: 'LUTs', icon: 'Film', count: 189 },
-    { name: 'Plugins', icon: 'Puzzle', count: 98 },
-    { name: 'Textures', icon: 'ImagePlus', count: 112 },
-    { name: 'Tools', icon: 'Wrench', count: 58 }
+    { name: 'Все', icon: 'LayoutGrid' },
+    { name: 'Утилиты', icon: 'Settings' },
+    { name: 'Инструменты', icon: 'Wrench' },
+    { name: 'Администрирование', icon: 'Shield' },
+    { name: 'API', icon: 'Code' },
+    { name: 'Защита', icon: 'Lock' },
+    { name: 'Геймплей', icon: 'Gamepad2' },
+    { name: 'Миры', icon: 'Globe' },
+    { name: 'Экономика', icon: 'DollarSign' },
+    { name: 'Конфигурация', icon: 'FileText' },
+    { name: 'Интерфейс', icon: 'Palette' }
   ];
+
+  const filteredResources = useMemo(() => {
+    return resources.filter(resource => {
+      const matchesSearch = resource.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          resource.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = selectedCategory === 'Все' || resource.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchQuery, selectedCategory]);
+
+  const filteredBuilds = useMemo(() => {
+    return builds.filter(build => {
+      return build.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+             build.description.toLowerCase().includes(searchQuery.toLowerCase());
+    });
+  }, [searchQuery]);
+
+  const categoryCount = (catName: string) => {
+    if (catName === 'Все') return resources.length;
+    return resources.filter(r => r.category === catName).length;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -135,7 +304,7 @@ const Index = () => {
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 bg-clip-text text-transparent">
                   FreeLeak.pro
                 </h1>
-                <p className="text-xs text-muted-foreground">Free Creative Resources</p>
+                <p className="text-xs text-muted-foreground">Бесплатные ресурсы для серверов</p>
               </div>
             </div>
             
@@ -181,46 +350,55 @@ const Index = () => {
             </Badge>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-                Профессиональные{' '}
+                Плагины и сборки{' '}
               </span>
               <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-pink-500 bg-clip-text text-transparent">
-                ресурсы для креатива
+                для Minecraft серверов
               </span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Пресеты, оверлеи, LUT-файлы, плагины и готовые сборки — всё что нужно для создания потрясающего контента
+              Лучшие плагины, конфиги и готовые сборки серверов — всё для быстрого старта вашего проекта
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-8">
               <div className="relative flex-1">
                 <Icon name="Search" className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
                 <Input 
-                  placeholder="Поиск пресетов, оверлеев, плагинов..." 
+                  placeholder="Поиск плагинов, сборок, конфигов..." 
                   className="pl-12 h-12 md:h-14 text-base md:text-lg bg-card/50 border-border/50 backdrop-blur-sm"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <Button size="lg" className="h-12 md:h-14 px-8 bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-lg shadow-orange-500/25">
+              <Button 
+                size="lg" 
+                className="h-12 md:h-14 px-8 bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-lg shadow-orange-500/25"
+                onClick={() => {}}
+              >
                 <Icon name="Search" className="mr-2" size={20} />
                 Найти
               </Button>
             </div>
 
-            <div className="flex flex-wrap gap-2 justify-center">
-              {categories.map((cat) => (
-                <Button 
-                  key={cat.name} 
-                  variant="outline" 
-                  size="sm"
-                  className="hover:bg-orange-500/10 hover:border-orange-500/50 transition-all backdrop-blur-sm"
-                >
-                  <Icon name={cat.icon as any} className="mr-2" size={16} />
-                  {cat.name}
-                  <Badge variant="secondary" className="ml-2 bg-muted/50">{cat.count}</Badge>
-                </Button>
-              ))}
-            </div>
+            {activeSection === 'resources' && (
+              <div className="flex flex-wrap gap-2 justify-center">
+                {categories.map((cat) => (
+                  <Button 
+                    key={cat.name} 
+                    variant={selectedCategory === cat.name ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => setSelectedCategory(cat.name)}
+                    className={selectedCategory === cat.name 
+                      ? 'bg-gradient-to-r from-orange-500 to-pink-500 border-0' 
+                      : 'hover:bg-orange-500/10 hover:border-orange-500/50 transition-all backdrop-blur-sm'}
+                  >
+                    <Icon name={cat.icon as any} className="mr-2" size={16} />
+                    {cat.name}
+                    <Badge variant="secondary" className="ml-2 bg-muted/50">{categoryCount(cat.name)}</Badge>
+                  </Button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -231,17 +409,17 @@ const Index = () => {
             <div className="space-y-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-2">🔥 Популярные ресурсы</h3>
-                  <p className="text-muted-foreground">Лучшие материалы для фото и видео</p>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                    {selectedCategory === 'Все' ? '🔥 Все ресурсы' : `📦 ${selectedCategory}`}
+                  </h3>
+                  <p className="text-muted-foreground">
+                    {filteredResources.length} {filteredResources.length === 1 ? 'ресурс' : 'ресурсов'} найдено
+                  </p>
                 </div>
-                <Button variant="ghost" className="text-orange-500 hover:text-orange-400">
-                  Показать всё
-                  <Icon name="ArrowRight" className="ml-2" size={16} />
-                </Button>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                {resources.map((resource) => (
+                {filteredResources.map((resource) => (
                   <Card 
                     key={resource.id} 
                     className="group relative overflow-hidden border-border/50 hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 bg-card/50 backdrop-blur-sm"
@@ -280,6 +458,10 @@ const Index = () => {
                           <Icon name="Package" size={14} />
                           <span>v{resource.version}</span>
                         </div>
+                        <div className="flex items-center gap-1">
+                          <Icon name="Tag" size={14} />
+                          <span>{resource.category}</span>
+                        </div>
                       </div>
                     </CardContent>
 
@@ -292,6 +474,14 @@ const Index = () => {
                   </Card>
                 ))}
               </div>
+
+              {filteredResources.length === 0 && (
+                <div className="text-center py-16">
+                  <div className="text-6xl mb-4">🔍</div>
+                  <h3 className="text-2xl font-bold mb-2">Ничего не найдено</h3>
+                  <p className="text-muted-foreground">Попробуйте изменить поисковый запрос или фильтр</p>
+                </div>
+              )}
             </div>
           )}
 
@@ -300,16 +490,14 @@ const Index = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-2xl md:text-3xl font-bold mb-2">📦 Готовые сборки</h3>
-                  <p className="text-muted-foreground">Полноценные программы для работы</p>
+                  <p className="text-muted-foreground">
+                    {filteredBuilds.length} {filteredBuilds.length === 1 ? 'сборка' : 'сборок'} найдено
+                  </p>
                 </div>
-                <Button variant="ghost" className="text-orange-500 hover:text-orange-400">
-                  Показать всё
-                  <Icon name="ArrowRight" className="ml-2" size={16} />
-                </Button>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {builds.map((build) => (
+                {filteredBuilds.map((build) => (
                   <Card 
                     key={build.id} 
                     className="group hover:border-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 bg-card/50 backdrop-blur-sm"
@@ -362,7 +550,14 @@ const Index = () => {
                         <Icon name="Info" className="mr-2" size={16} />
                         Подробнее
                       </Button>
-                      <Button className="flex-1 bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-md">
+                      <Button 
+                        className="flex-1 bg-gradient-to-r from-orange-500 to-pink-500 hover:opacity-90 shadow-md"
+                        onClick={() => {
+                          if (build.downloadUrl !== '#') {
+                            window.open(build.downloadUrl, '_blank');
+                          }
+                        }}
+                      >
                         <Icon name="Download" className="mr-2" size={16} />
                         Скачать
                       </Button>
@@ -370,6 +565,14 @@ const Index = () => {
                   </Card>
                 ))}
               </div>
+
+              {filteredBuilds.length === 0 && (
+                <div className="text-center py-16">
+                  <div className="text-6xl mb-4">🔍</div>
+                  <h3 className="text-2xl font-bold mb-2">Ничего не найдено</h3>
+                  <p className="text-muted-foreground">Попробуйте изменить поисковый запрос</p>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -386,17 +589,16 @@ const Index = () => {
                 <span className="font-bold text-lg">FreeLeak.pro</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Бесплатные ресурсы для фотографов, видеографов и дизайнеров
+                Бесплатные плагины и сборки для Minecraft серверов
               </p>
             </div>
             
             <div>
               <h4 className="font-semibold mb-4">Ресурсы</h4>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="hover:text-orange-500 cursor-pointer transition-colors">Пресеты</div>
-                <div className="hover:text-orange-500 cursor-pointer transition-colors">Оверлеи</div>
-                <div className="hover:text-orange-500 cursor-pointer transition-colors">LUT-файлы</div>
                 <div className="hover:text-orange-500 cursor-pointer transition-colors">Плагины</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Конфиги</div>
+                <div className="hover:text-orange-500 cursor-pointer transition-colors">Моды</div>
               </div>
             </div>
             
@@ -416,10 +618,7 @@ const Index = () => {
                   <Icon name="Github" size={16} />
                 </Button>
                 <Button size="sm" variant="outline" className="w-9 h-9 p-0 hover:bg-orange-500/10 hover:border-orange-500/50">
-                  <Icon name="Twitter" size={16} />
-                </Button>
-                <Button size="sm" variant="outline" className="w-9 h-9 p-0 hover:bg-orange-500/10 hover:border-orange-500/50">
-                  <Icon name="Instagram" size={16} />
+                  <Icon name="MessageCircle" size={16} />
                 </Button>
               </div>
             </div>
@@ -428,7 +627,7 @@ const Index = () => {
           <Separator className="mb-6" />
           
           <div className="text-center text-sm text-muted-foreground">
-            <p>© 2024 FreeLeak.pro — Все ресурсы бесплатны для личного и коммерческого использования</p>
+            <p>© 2024 FreeLeak.pro — Все ресурсы бесплатны для использования</p>
           </div>
         </div>
       </footer>
